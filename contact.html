@@ -19,6 +19,25 @@
     crossorigin="anonymous" defer></script>
 
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  >
+
+  <!-- Leaflet JS + custom map script -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+    defer
+  ></script>
+
+  <script src="js/test.js" defer></script>
+
 </head>
 
 <body>
@@ -54,19 +73,56 @@
     <h2 class="text-primary fw-bold mb-4">Contacteer mij</h2>
 
     <!-- Contactformulier -->
-    <form class="mx-auto" style="max-width:600px;">
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      class="mx-auto"
+      style="max-width:600px;"
+    >
+      <input type="hidden" name="form-name" value="contact">
+
+      <p class="d-none">
+        <label>Laat dit veld leeg: <input name="bot-field"></label>
+      </p>
+
       <div class="mb-3 text-start">
         <label for="name" class="form-label">Naam</label>
-        <input type="text" class="form-control" id="name" placeholder="Je naam">
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Je naam"
+          required
+        >
       </div>
+
       <div class="mb-3 text-start">
         <label for="email" class="form-label">E-mailadres</label>
-        <input type="email" class="form-control" id="email" placeholder="Je e-mail">
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="Je e-mail"
+          required
+        >
       </div>
+
       <div class="mb-3 text-start">
         <label for="message" class="form-label">Bericht</label>
-        <textarea class="form-control" id="message" rows="4" placeholder="Je bericht"></textarea>
+        <textarea
+          class="form-control"
+          id="message"
+          name="message"
+          rows="4"
+          placeholder="Je bericht"
+          required
+        ></textarea>
       </div>
+
       <button type="submit" class="btn btn-primary px-4 py-2">Verstuur Bericht</button>
     </form>
 
@@ -92,6 +148,16 @@
         </li>
       </ul>
     </section>
+
+    <!-- KAART-SECTIE -->
+    <section class="mt-5">
+      <h2 class="h4 mb-3 text-center text-primary fw-bold">Hier kan je me vinden</h2>
+      <p class="text-center mb-4">
+        Dit is een indicatieve locatie die aangeeft waar ik ongeveer gevestigd ben.
+      </p>
+      <div id="portfolio-map" style="height: 350px; border-radius: 0.75rem; overflow: hidden;"></div>
+    </section>
+
   </main>
 
   <!-- FOOTER -->
